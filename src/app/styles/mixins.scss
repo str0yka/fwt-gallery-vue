@@ -1,0 +1,81 @@
+// Медиа
+
+@mixin media-from-tablet {
+  @media (width >= 768px) {
+    @content;
+  }
+}
+
+@mixin media-from-tablet-portrait {
+  @media (width >= 1280px) {
+    @content;
+  }
+}
+
+@mixin media-from-desktop {
+  @media (width >= 1440px) {
+    @content;
+  }
+}
+
+// Типография
+
+@mixin typography-h1 {
+  font-family: 'Cormorant SC', var(--font-family-common);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.38px;
+  text-transform: uppercase;
+}
+
+@mixin typography-h2 {
+  font-family: 'Cormorant SC', var(--font-family-common);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.53px;
+  text-transform: uppercase;
+}
+
+@mixin typography-paragraph-big-light {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+@mixin typography-paragraph-big-medium {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+@mixin typography-paragraph-base-light {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19.6px;
+}
+
+@mixin typography-paragraph-small-light {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16.8px;
+}
+
+@mixin typography-caption-base-bold {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14.52px;
+  text-transform: uppercase;
+}
+
+@mixin typography-caption-small-bold {
+  font-family: Inter, var(--font-family-common);
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 9.68px;
+  text-transform: uppercase;
+}
