@@ -13,7 +13,7 @@ import { ToggleThemeButton } from '@features';
 </template>
 
 <style scoped lang="scss">
-@import '@app/styles/mixins.scss';
+@import '@app/styles/mixins';
 
 header {
   display: flex;
