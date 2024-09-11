@@ -1,3 +1,4 @@
 import { isThemeValid, getTheme } from './theme';
+import { range } from './helpers';
 
-export { isThemeValid, getTheme };
+export { range, isThemeValid, getTheme };
