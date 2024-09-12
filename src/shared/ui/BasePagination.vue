@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { range } from '@shared/lib';
-import { computed } from 'vue';
+import { defineProps, computed } from 'vue';
 import { ChevronIcon } from './icons';
 
 const props = withDefaults(
@@ -45,9 +45,10 @@ const pages = computed(() => {
 <template>
   <nav class="wrapper">
     <button
-      v-if="props.sideButtons"
+      v-if="sideButtons"
       type="button"
       aria-label="previous page"
+      :disabled="currentPage === previousPage"
       :class="['side-button', 'left']"
       @click="currentPage = previousPage"
     >
@@ -80,9 +81,10 @@ const pages = computed(() => {
       </template>
     </div>
     <button
-      v-if="props.sideButtons"
+      v-if="sideButtons"
       type="button"
       aria-label="next page"
+      :disabled="currentPage === nextPage"
       class="side-button"
       @click="currentPage = nextPage"
     >
@@ -143,6 +145,10 @@ const pages = computed(() => {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+
+  &:disabled {
+    pointer-events: none;
+  }
 
   &:hover {
     color: var(--color-text-primary);

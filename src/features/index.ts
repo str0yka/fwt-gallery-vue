@@ -1,3 +1,4 @@
 import { ToggleThemeButton } from './toggle-theme';
+import { FilterPaintings } from './filter';
 
-export { ToggleThemeButton };
+export { ToggleThemeButton, FilterPaintings };

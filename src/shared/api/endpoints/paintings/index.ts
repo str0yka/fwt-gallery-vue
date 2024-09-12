@@ -20,10 +20,11 @@ export interface Painting {
 interface GetPaintingsParams {
   page?: number;
   limit?: number;
+  query?: string;
 }
 
-export const getPaintings = async ({ limit, page }: GetPaintingsParams = {}) => {
-  const searchParams = `${typeof page === 'number' ? `&_page=${page}` : ''}${typeof limit === 'number' ? `&_limit=${limit}` : ''}`;
+export const getPaintings = async ({ limit, page, query }: GetPaintingsParams = {}) => {
+  const searchParams = `${typeof page === 'number' ? `&_page=${page}` : ''}${typeof limit === 'number' ? `&_limit=${limit}` : ''}${typeof query === 'string' ? `&q=${query}` : ''}`;
 
   const response = await fetch(
     `${API_URL}/paintings?_expand=author&_expand=location${searchParams}`,

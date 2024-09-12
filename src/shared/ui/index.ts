@@ -6,22 +6,41 @@ import {
   ChevronIcon,
   FilterIcon,
   SearchIcon,
+  MinusIcon,
+  PlusIcon,
 } from './icons';
-import IconButton from './IconButton.vue';
-import LayoutContainer from './LayoutContainer.vue';
-import LayoutPagination from './LayoutPagination.vue';
-import TextInput from './TextInput.vue';
+import BaseIconButton from './BaseIconButton.vue';
+import BaseContainer from './BaseContainer.vue';
+import BasePagination from './BasePagination.vue';
+import BaseInput from './BaseInput.vue';
+import BaseDrawer from './BaseDrawer.vue';
+import type { BaseDrawerProps } from './BaseDrawer.vue';
+import {
+  BaseAccrodion,
+  BaseAccordionTrigger,
+  BaseAccordionContent,
+  BaseAccordionItem,
+} from './BaseAccordion';
 
 export {
+  BaseDrawer,
   SearchIcon,
-  TextInput,
+  BaseIconButton,
   LogoIcon,
-  LayoutPagination,
-  IconButton,
+  BaseContainer,
+  BasePagination,
   MoonIcon,
   SunIcon,
-  LayoutContainer,
+  BaseInput,
   ArrowIcon,
   ChevronIcon,
   FilterIcon,
+  BaseAccrodion,
+  BaseAccordionTrigger,
+  BaseAccordionContent,
+  BaseAccordionItem,
+  MinusIcon,
+  PlusIcon,
 };
+
+export type { BaseDrawerProps };

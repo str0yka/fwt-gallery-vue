@@ -1,77 +1,107 @@
 <script setup lang="ts">
 import { PaintingItem } from '@entities';
+import { FilterPaintings } from '@features';
 import { getPaintings, type Painting } from '@shared/api';
 import { API_URL } from '@shared/constants';
 import {
   FilterIcon,
-  IconButton,
-  LayoutContainer,
-  LayoutPagination,
+  BaseContainer,
+  BaseIconButton,
+  BasePagination,
+  BaseInput,
   SearchIcon,
-  TextInput,
+  BaseAccrodion,
+  BaseAccordionTrigger,
+  BaseAccordionContent,
+  BaseAccordionItem,
+  BaseDrawer,
 } from '@shared/ui';
 import { LayoutHeader } from '@widgets';
 import { onBeforeMount, ref, watch } from 'vue';
 
 const paintings = ref<Painting[]>([]);
 
+const loading = ref(false);
+const error = ref('');
+
 const page = ref(1);
 const pages = ref<number | null>(null);
 const searchValue = ref('');
 
-const handleGetPaintings = async () => {
-  const response = await getPaintings({ limit: 6, page: page.value });
+const filterOpen = ref(false);
 
-  if (response.ok) {
+const handleGetPaintings = async () => {
+  loading.value = true;
+  error.value = '';
+
+  try {
+    const response = await getPaintings({ limit: 6, page: page.value, query: searchValue.value });
     pages.value = response.data.pages;
     paintings.value = response.data.paintings;
+  } catch {
+    error.value = 'Oops! Something went wrong!';
+  } finally {
+    loading.value = false;
   }
 };
 
 watch(page, handleGetPaintings);
+watch(searchValue, () => {
+  page.value = 1;
+  handleGetPaintings();
+});
 onBeforeMount(handleGetPaintings);
 </script>
 
 <template>
   <LayoutHeader />
-  <LayoutContainer>
+  <BaseContainer>
     <main>
       <div class="list">
         <div class="search-container">
-          <TextInput
+          <BaseInput
             class="search-input"
             v-model="searchValue"
-            placeholder="awdawd"
+            placeholder="Painting title"
           >
             <template #start-adornment>
               <SearchIcon />
             </template>
-          </TextInput>
-          <IconButton>
+          </BaseInput>
+          <BaseIconButton @click="filterOpen = !filterOpen">
             <FilterIcon />
-          </IconButton>
+          </BaseIconButton>
         </div>
       </div>
-      <div class="list">
-        <PaintingItem
-          v-for="painting in paintings"
-          :key="painting.id"
-          :artist="painting.author.name"
-          :date="painting.created"
-          :image-url="`${API_URL}/${painting.imageUrl}`"
-          :location="painting.location.location"
-          :name="painting.name"
+      <template v-if="!loading">
+        <div class="list">
+          <PaintingItem
+            v-for="painting in paintings"
+            :key="painting.id"
+            :artist="painting.author.name"
+            :date="painting.created"
+            :image-url="`${API_URL}/${painting.imageUrl}`"
+            :location="painting.location.location"
+            :name="painting.name"
+          />
+        </div>
+        <BasePagination
+          v-if="pages"
+          class="pagination"
+          side-buttons
+          v-model="page"
+          :total-pages="pages"
         />
-      </div>
-      <LayoutPagination
-        v-if="pages"
-        class="pagination"
-        side-buttons
-        v-model="page"
-        :total-pages="pages"
-      />
+      </template>
+      <template v-else>
+        {{ error }}
+      </template>
     </main>
-  </LayoutContainer>
+    <FilterPaintings
+      :open="filterOpen"
+      @close="filterOpen = false"
+    />
+  </BaseContainer>
 </template>
 
 <style scoped lang="scss">

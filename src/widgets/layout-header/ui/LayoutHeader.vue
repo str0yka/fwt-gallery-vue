@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { LayoutContainer, LogoIcon } from '@shared/ui';
+import { BaseContainer, LogoIcon } from '@shared/ui';
 import { ToggleThemeButton } from '@features';
 </script>
 
 <template>
-  <LayoutContainer>
+  <BaseContainer>
     <header>
       <LogoIcon class="logo" />
       <ToggleThemeButton />
     </header>
-  </LayoutContainer>
+  </BaseContainer>
 </template>
 
 <style scoped lang="scss">
