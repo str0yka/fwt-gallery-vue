@@ -8,6 +8,7 @@ import {
   SearchIcon,
   MinusIcon,
   PlusIcon,
+  ExpandIcon,
 } from './icons';
 import BaseIconButton from './BaseIconButton.vue';
 import BaseContainer from './BaseContainer.vue';
@@ -21,8 +22,12 @@ import {
   BaseAccordionContent,
   BaseAccordionItem,
 } from './BaseAccordion';
+import BaseButton from './BaseButton.vue';
+import BaseSelect from './BaseSelect.vue';
 
 export {
+  BaseSelect,
+  BaseButton,
   BaseDrawer,
   SearchIcon,
   BaseIconButton,
@@ -41,6 +46,7 @@ export {
   BaseAccordionItem,
   MinusIcon,
   PlusIcon,
+  ExpandIcon,
 };
 
 export type { BaseDrawerProps };

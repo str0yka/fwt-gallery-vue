@@ -1,11 +1,11 @@
 <template>
-  <button>
+  <button :class="$style.button">
     <slot />
   </button>
 </template>
 
-<style lang="scss" scoped>
-button {
+<style lang="scss" module>
+.button {
   width: 36px;
   height: 36px;
   border-radius: 4px;

@@ -5,17 +5,17 @@ import { ToggleThemeButton } from '@features';
 
 <template>
   <BaseContainer>
-    <header>
-      <LogoIcon class="logo" />
+    <header :class="$style.header">
+      <LogoIcon :class="$style.logo" />
       <ToggleThemeButton />
     </header>
   </BaseContainer>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;

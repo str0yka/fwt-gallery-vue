@@ -23,24 +23,24 @@ const handleClick = () => {
 <template>
   <button
     type="button"
-    class="trigger"
+    :class="$style.trigger"
     @click="handleClick"
   >
-    <p class="trigger-text">
+    <p :class="$style['trigger-text']">
       <slot />
     </p>
     <MinusIcon
       v-if="open"
-      class="expand-icon"
+      :class="$style['expand-icon']"
     />
     <PlusIcon
       v-else
-      class="expand-icon"
+      :class="$style['expand-icon']"
     />
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
 .trigger {

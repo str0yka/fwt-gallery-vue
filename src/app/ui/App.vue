@@ -56,11 +56,11 @@ onBeforeMount(handleGetPaintings);
 <template>
   <LayoutHeader />
   <BaseContainer>
-    <main>
-      <div class="list">
-        <div class="search-container">
+    <main :class="$style.main">
+      <div :class="$style.list">
+        <div :class="$style['search-container']">
           <BaseInput
-            class="search-input"
+            :class="$style['search-input']"
             v-model="searchValue"
             placeholder="Painting title"
           >
@@ -74,7 +74,7 @@ onBeforeMount(handleGetPaintings);
         </div>
       </div>
       <template v-if="!loading">
-        <div class="list">
+        <div :class="$style.list">
           <PaintingItem
             v-for="painting in paintings"
             :key="painting.id"
@@ -87,7 +87,7 @@ onBeforeMount(handleGetPaintings);
         </div>
         <BasePagination
           v-if="pages"
-          class="pagination"
+          :class="$style.pagination"
           side-buttons
           v-model="page"
           :total-pages="pages"
@@ -104,10 +104,10 @@ onBeforeMount(handleGetPaintings);
   </BaseContainer>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
-main {
+.main {
   display: flex;
   flex-direction: column;
 }

@@ -7,6 +7,7 @@ import FilterIcon from './FilterIcon.vue';
 import SearchIcon from './SearchIcon.vue';
 import PlusIcon from './PlusIcon.vue';
 import MinusIcon from './MinusIcon.vue';
+import ExpandIcon from './ExpandIcon.vue';
 
 export {
   LogoIcon,
@@ -18,4 +19,5 @@ export {
   SearchIcon,
   PlusIcon,
   MinusIcon,
+  ExpandIcon,
 };

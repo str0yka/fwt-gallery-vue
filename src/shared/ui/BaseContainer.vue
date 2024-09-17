@@ -1,8 +1,8 @@
 <template>
-  <div class="container"><slot /></div>
+  <div :class="$style.container"><slot /></div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
 .container {

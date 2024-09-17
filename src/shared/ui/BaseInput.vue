@@ -4,14 +4,11 @@ defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <label
-    class="wrapper"
-    v-bind:class="$attrs.class"
-  >
+  <label :class="[$style.wrapper, $attrs.class]">
     <slot name="start-adornment" />
     <input
       v-bind="{ ...$attrs, class: undefined }"
-      class="input"
+      :class="$style.input"
       :size="1"
       :value="value"
       @input="value = ($event.target as HTMLInputElement).value"
@@ -20,7 +17,7 @@ defineOptions({ inheritAttrs: false });
   </label>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
 .wrapper {

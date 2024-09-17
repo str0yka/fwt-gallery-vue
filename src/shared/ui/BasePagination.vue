@@ -43,18 +43,18 @@ const pages = computed(() => {
 </script>
 
 <template>
-  <nav class="wrapper">
+  <nav :class="$style.wrapper">
     <button
       v-if="sideButtons"
       type="button"
       aria-label="previous page"
       :disabled="currentPage === previousPage"
-      :class="['side-button', 'left']"
+      :class="[$style['side-button'], $style.left]"
       @click="currentPage = previousPage"
     >
       <ChevronIcon />
     </button>
-    <div class="list">
+    <div :class="$style.list">
       <template
         v-for="page in pages"
         :key="page"
@@ -63,9 +63,9 @@ const pages = computed(() => {
           v-if="page"
           type="button"
           :class="[
-            'list-item',
+            $style['list-item'],
             {
-              current: page === currentPage,
+              [$style.current]: page === currentPage,
             },
           ]"
           @click="currentPage = page"
@@ -74,7 +74,7 @@ const pages = computed(() => {
         </button>
         <div
           v-else
-          class="space-item"
+          :class="$style['space-item']"
         >
           ...
         </div>
@@ -85,7 +85,7 @@ const pages = computed(() => {
       type="button"
       aria-label="next page"
       :disabled="currentPage === nextPage"
-      class="side-button"
+      :class="$style['side-button']"
       @click="currentPage = nextPage"
     >
       <ChevronIcon />
@@ -93,7 +93,7 @@ const pages = computed(() => {
   </nav>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
 .wrapper {
