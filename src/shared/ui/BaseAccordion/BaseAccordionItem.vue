@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, inject, provide, type Ref } from 'vue';
+import { type Ref, computed, inject, provide } from 'vue';
 
 const props = defineProps<{ value: string }>();
 const opened = inject<Ref<string[]>>('opened');

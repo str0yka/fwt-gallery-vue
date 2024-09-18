@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { inject, type ComputedRef, type Ref } from 'vue';
+import { type ComputedRef, type Ref, inject } from 'vue';
+
 import { MinusIcon, PlusIcon } from '../icons';
 
 const opened = inject<Ref<string[]>>('opened');

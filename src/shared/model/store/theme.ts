@@ -1,8 +1,10 @@
+import { defineStore } from 'pinia';
+import { ref, watch } from 'vue';
+
 import { LOCAL_STORAGE, THEME } from '@shared/constants';
 import { getTheme } from '@shared/lib';
-import { defineStore } from 'pinia';
+
 import type { Theme } from '../types';
-import { ref, watch } from 'vue';
 
 export const useThemeStore = defineStore('theme', () => {
   const theme = ref(getTheme());

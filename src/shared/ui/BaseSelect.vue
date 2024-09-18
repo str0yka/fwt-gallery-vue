@@ -1,9 +1,13 @@
-<script setup lang="ts" generic="OptionValue extends string, OptionData extends unknown">
-import { computed, ref, defineProps, defineOptions } from 'vue';
+<script setup lang="ts" generic="OptionValue extends string | number, OptionData extends unknown">
+import { computed, defineOptions, defineProps, ref } from 'vue';
+
 import BaseInput from './BaseInput.vue';
 import { ExpandIcon } from './icons';
 
-export interface Option<Value extends string = string, Data extends unknown = unknown> {
+export interface Option<
+  Value extends string | number = string | number,
+  Data extends unknown = unknown,
+> {
   value: Value;
   data?: Data;
   label: string;
@@ -35,14 +39,18 @@ const handleSelect = (option: Option<OptionValue, OptionData>) => {
   open.value = false;
   props.onSelect?.(option);
 };
+
+const selectedOption = computed(() => props.options.find((option) => option.value === props.value));
 </script>
 
 <template>
   <div :class="$style.wrapper">
     <BaseInput
-      :model-value="inputValue"
+      :value="open ? inputValue : selectedOption?.label"
+      @input="(event) => (inputValue = (event.target as HTMLInputElement).value)"
       @focus.prevent="handleOpen"
       v-bind="$attrs"
+      v-click-outside="() => (open = false)"
     >
       <template #end-adornment>
         <ExpandIcon :class="[$style['expand-icon'], { [$style.open]: open }]" />

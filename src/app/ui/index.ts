@@ -1,3 +1,3 @@
-import App from './App.vue'
+import App from './App.vue';
 
-export { App }
+export { App };

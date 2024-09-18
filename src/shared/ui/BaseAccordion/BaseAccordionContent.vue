@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, type ComputedRef, defineOptions } from 'vue';
+import { type ComputedRef, defineOptions, inject } from 'vue';
 
 const open = inject<ComputedRef<boolean>>('open');
 defineOptions({ inheritAttrs: false });
@@ -29,10 +29,6 @@ defineOptions({ inheritAttrs: false });
 </template>
 
 <style lang="scss" module>
-.content {
-  overflow: hidden;
-}
-
 .container {
   display: grid;
   margin-top: 24px;
@@ -44,6 +40,11 @@ defineOptions({ inheritAttrs: false });
   transition:
     grid-template-rows 300ms,
     margin-top 300ms;
+}
+
+.v-enter-active .content,
+.v-leave-active .content {
+  overflow: hidden;
 }
 
 .v-enter-from,

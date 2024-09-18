@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
+
 import { ArrowIcon } from '@shared/ui';
 
 const { name, imageUrl } = defineProps<{

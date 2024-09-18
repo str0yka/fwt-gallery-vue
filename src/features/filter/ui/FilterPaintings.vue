@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed, onBeforeMount, ref } from 'vue';
+
+import { type Author, type PaintingLocation, getAuthors, getLocations } from '@shared/api';
 import {
   BaseAccordionContent,
   BaseAccordionItem,
@@ -6,14 +9,37 @@ import {
   BaseAccrodion,
   BaseButton,
   BaseDrawer,
+  type BaseDrawerProps,
   BaseInput,
   BaseSelect,
   MinusIcon,
-  type BaseDrawerProps,
+  type Option,
 } from '@shared/ui';
 
 defineProps<BaseDrawerProps>();
 defineOptions({ inheritAttrs: false });
+
+const authors = ref<Author[]>([]);
+const locations = ref<PaintingLocation[]>([]);
+
+type AuthorOption = Option<Author['id'], Author>;
+type LocationOption = Option<PaintingLocation['id'], PaintingLocation>;
+
+const authorOptions = computed<AuthorOption[]>(() =>
+  authors.value.map((author) => ({ label: author.name, value: author.id, data: author })),
+);
+
+const locationOptions = computed<LocationOption[]>(() =>
+  locations.value.map((location) => ({ label: location.name, value: location.id, data: location })),
+);
+
+const selectedAuthorOption = ref<AuthorOption | null>(null);
+
+onBeforeMount(async () => {
+  const [locationsResponse, authorsResponse] = [await getLocations(), await getAuthors()];
+  locations.value = locationsResponse.data;
+  authors.value = authorsResponse.data;
+});
 </script>
 
 <template>
@@ -28,14 +54,12 @@ defineOptions({ inheritAttrs: false });
           <BaseAccordionItem value="artist">
             <div :class="$style['accordion-item']">
               <BaseAccordionTrigger>Artist</BaseAccordionTrigger>
-              <BaseAccordionContent style="overflow: visible">
+              <BaseAccordionContent>
                 <BaseSelect
                   placeholder="Select the artist"
-                  :options="[
-                    { label: '1', value: '1' },
-                    { label: '2', value: '2' },
-                    { label: '3', value: '3' },
-                  ]"
+                  :value="selectedAuthorOption?.value"
+                  :options="authorOptions"
+                  @select="(option) => (selectedAuthorOption = option)"
                 />
               </BaseAccordionContent>
             </div>

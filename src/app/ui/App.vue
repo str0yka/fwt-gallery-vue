@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import { PaintingItem } from '@entities';
+import { onBeforeMount, ref, watch } from 'vue';
+
+import { LayoutHeader } from '@widgets';
+
 import { FilterPaintings } from '@features';
-import { getPaintings, type Painting } from '@shared/api';
+
+import { PaintingItem } from '@entities';
+
+import { type Painting, getPaintings } from '@shared/api';
 import { API_URL } from '@shared/constants';
 import {
-  FilterIcon,
-  BaseContainer,
-  BaseIconButton,
-  BasePagination,
-  BaseInput,
-  SearchIcon,
-  BaseAccrodion,
-  BaseAccordionTrigger,
   BaseAccordionContent,
   BaseAccordionItem,
+  BaseAccordionTrigger,
+  BaseAccrodion,
+  BaseContainer,
   BaseDrawer,
+  BaseIconButton,
+  BaseInput,
+  BasePagination,
+  FilterIcon,
+  SearchIcon,
 } from '@shared/ui';
-import { LayoutHeader } from '@widgets';
-import { onBeforeMount, ref, watch } from 'vue';
 
 const paintings = ref<Painting[]>([]);
 
@@ -35,7 +39,9 @@ const handleGetPaintings = async () => {
   error.value = '';
 
   try {
-    const response = await getPaintings({ limit: 6, page: page.value, query: searchValue.value });
+    const response = await getPaintings({
+      query: { limit: 6, page: page.value, search: searchValue.value },
+    });
     pages.value = response.data.pages;
     paintings.value = response.data.paintings;
   } catch {
@@ -61,7 +67,8 @@ onBeforeMount(handleGetPaintings);
         <div :class="$style['search-container']">
           <BaseInput
             :class="$style['search-input']"
-            v-model="searchValue"
+            :value="searchValue"
+            @input="searchValue = ($event.target as HTMLInputElement).value"
             placeholder="Painting title"
           >
             <template #start-adornment>
@@ -81,7 +88,7 @@ onBeforeMount(handleGetPaintings);
             :artist="painting.author.name"
             :date="painting.created"
             :image-url="`${API_URL}/${painting.imageUrl}`"
-            :location="painting.location.location"
+            :location="painting.location.name"
             :name="painting.name"
           />
         </div>

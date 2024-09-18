@@ -1,5 +1,5 @@
-import { getPaintings } from './endpoints';
-import type { Painting } from './endpoints';
+import { getAuthors, getLocations, getPaintings } from './endpoints';
+import type { Author, Painting, PaintingLocation } from './endpoints';
 
-export { getPaintings };
-export type { Painting };
+export { getPaintings, getAuthors, getLocations };
+export type { Painting, Author, PaintingLocation };

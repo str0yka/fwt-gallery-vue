@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineOptions } from 'vue';
+import { defineOptions, defineProps } from 'vue';
 
 export interface BaseDrawerProps {
   open?: boolean;

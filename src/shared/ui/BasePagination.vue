@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed, defineProps } from 'vue';
+
 import { range } from '@shared/lib';
-import { defineProps, computed } from 'vue';
+
 import { ChevronIcon } from './icons';
 
 const props = withDefaults(

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { THEME } from '@shared/constants';
 import { useThemeStore } from '@shared/model';
-import { SunIcon, MoonIcon } from '@shared/ui';
+import { MoonIcon, SunIcon } from '@shared/ui';
 
 const themeStore = useThemeStore();
 </script>

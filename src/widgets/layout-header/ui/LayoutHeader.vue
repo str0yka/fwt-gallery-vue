@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { BaseContainer, LogoIcon } from '@shared/ui';
 import { ToggleThemeButton } from '@features';
+
+import { BaseContainer, LogoIcon } from '@shared/ui';
 </script>
 
 <template>

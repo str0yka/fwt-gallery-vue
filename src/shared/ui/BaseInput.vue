@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const value = defineModel<string>();
+import type { InputHTMLAttributes } from 'vue';
+
+interface Props extends /* @vue-ignore */ InputHTMLAttributes {}
+
+defineProps<Props>();
 defineOptions({ inheritAttrs: false });
 </script>
 
@@ -10,8 +14,6 @@ defineOptions({ inheritAttrs: false });
       v-bind="{ ...$attrs, class: undefined }"
       :class="$style.input"
       :size="1"
-      :value="value"
-      @input="value = ($event.target as HTMLInputElement).value"
     />
     <slot name="end-adornment" />
   </label>

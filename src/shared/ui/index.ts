@@ -1,29 +1,30 @@
 import {
-  LogoIcon,
-  MoonIcon,
-  SunIcon,
-  ArrowIcon,
-  ChevronIcon,
-  FilterIcon,
-  SearchIcon,
-  MinusIcon,
-  PlusIcon,
-  ExpandIcon,
-} from './icons';
-import BaseIconButton from './BaseIconButton.vue';
-import BaseContainer from './BaseContainer.vue';
-import BasePagination from './BasePagination.vue';
-import BaseInput from './BaseInput.vue';
-import BaseDrawer from './BaseDrawer.vue';
-import type { BaseDrawerProps } from './BaseDrawer.vue';
-import {
-  BaseAccrodion,
-  BaseAccordionTrigger,
   BaseAccordionContent,
   BaseAccordionItem,
+  BaseAccordionTrigger,
+  BaseAccrodion,
 } from './BaseAccordion';
 import BaseButton from './BaseButton.vue';
+import BaseContainer from './BaseContainer.vue';
+import BaseDrawer from './BaseDrawer.vue';
+import type { BaseDrawerProps } from './BaseDrawer.vue';
+import BaseIconButton from './BaseIconButton.vue';
+import BaseInput from './BaseInput.vue';
+import BasePagination from './BasePagination.vue';
 import BaseSelect from './BaseSelect.vue';
+import type { Option } from './BaseSelect.vue';
+import {
+  ArrowIcon,
+  ChevronIcon,
+  ExpandIcon,
+  FilterIcon,
+  LogoIcon,
+  MinusIcon,
+  MoonIcon,
+  PlusIcon,
+  SearchIcon,
+  SunIcon,
+} from './icons';
 
 export {
   BaseSelect,
@@ -49,4 +50,4 @@ export {
   ExpandIcon,
 };
 
-export type { BaseDrawerProps };
+export type { BaseDrawerProps, Option };
