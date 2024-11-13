@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ToggleThemeButton } from '@features';
+import { ToggleThemeButton } from '@features/toggle-theme';
 
-import { BaseContainer, LogoIcon } from '@shared/ui';
+import { LogoIcon } from '@shared/ui';
+
+import BaseLayoutContainer from './BaseLayoutContainer.vue';
 </script>
 
 <template>
-  <BaseContainer>
+  <BaseLayoutContainer>
     <header :class="$style.header">
       <LogoIcon :class="$style.logo" />
       <ToggleThemeButton />
     </header>
-  </BaseContainer>
+  </BaseLayoutContainer>
 </template>
 
 <style lang="scss" module>

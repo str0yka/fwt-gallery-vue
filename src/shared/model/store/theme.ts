@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
 
-import { LOCAL_STORAGE, THEME } from '@shared/constants';
+import { LOCAL_STORAGE, THEME } from '@shared/config';
 import { getTheme } from '@shared/lib';
 
 import type { Theme } from '../types';

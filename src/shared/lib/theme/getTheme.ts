@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE, THEME_DEFAULT } from '@shared/constants';
+import { LOCAL_STORAGE, THEME_DEFAULT } from '@shared/config';
 
 import { isThemeValid } from './isThemeValid';
 

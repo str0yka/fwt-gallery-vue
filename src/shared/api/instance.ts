@@ -1,4 +1,4 @@
-import { API_URL } from '@shared/constants';
+import { API_URL } from '@shared/config';
 
 interface CreateInstanceParams {
   baseUrl?: string;

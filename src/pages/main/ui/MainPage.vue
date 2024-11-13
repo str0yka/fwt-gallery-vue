@@ -1,30 +1,17 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, watch } from 'vue';
 
-import { LayoutHeader } from '@widgets';
+import { BaseLayout } from '@widgets/base-layout';
 
-import { FilterPaintings } from '@features';
+import { FilterPaintings } from '@features/filter-paintings';
 
-import { PaintingItem } from '@entities';
+import { PaintingItem } from '@entities/painting';
 
 import { type Painting, getPaintings } from '@shared/api';
-import { API_URL } from '@shared/constants';
-import {
-  BaseAccordionContent,
-  BaseAccordionItem,
-  BaseAccordionTrigger,
-  BaseAccrodion,
-  BaseContainer,
-  BaseDrawer,
-  BaseIconButton,
-  BaseInput,
-  BasePagination,
-  FilterIcon,
-  SearchIcon,
-} from '@shared/ui';
+import { API_URL } from '@shared/config';
+import { BaseIconButton, BaseInput, BasePagination, FilterIcon, SearchIcon } from '@shared/ui';
 
 const paintings = ref<Painting[]>([]);
-
 const loading = ref(false);
 const error = ref('');
 
@@ -42,8 +29,10 @@ const handleGetPaintings = async () => {
     const response = await getPaintings({
       query: { limit: 6, page: page.value, search: searchValue.value },
     });
+    console.log(response.data);
     pages.value = response.data.pages;
     paintings.value = response.data.paintings;
+    console.log(pages.value);
   } catch {
     error.value = 'Oops! Something went wrong!';
   } finally {
@@ -51,24 +40,23 @@ const handleGetPaintings = async () => {
   }
 };
 
-watch(page, handleGetPaintings);
+onBeforeMount(handleGetPaintings);
+watch([page, searchValue], handleGetPaintings);
 watch(searchValue, () => {
   page.value = 1;
-  handleGetPaintings();
+  console.log('@@');
 });
-onBeforeMount(handleGetPaintings);
 </script>
 
 <template>
-  <LayoutHeader />
-  <BaseContainer>
+  <BaseLayout>
     <main :class="$style.main">
       <div :class="$style.list">
         <div :class="$style['search-container']">
           <BaseInput
             :class="$style['search-input']"
             :value="searchValue"
-            @input="searchValue = ($event.target as HTMLInputElement).value"
+            v-model="searchValue"
             placeholder="Painting title"
           >
             <template #start-adornment>
@@ -80,7 +68,7 @@ onBeforeMount(handleGetPaintings);
           </BaseIconButton>
         </div>
       </div>
-      <template v-if="!loading">
+      <template v-if="!error">
         <div :class="$style.list">
           <PaintingItem
             v-for="painting in paintings"
@@ -88,7 +76,7 @@ onBeforeMount(handleGetPaintings);
             :artist="painting.author.name"
             :date="painting.created"
             :image-url="`${API_URL}/${painting.imageUrl}`"
-            :location="painting.location.name"
+            :location="painting.location.location"
             :name="painting.name"
           />
         </div>
@@ -108,7 +96,7 @@ onBeforeMount(handleGetPaintings);
       :open="filterOpen"
       @close="filterOpen = false"
     />
-  </BaseContainer>
+  </BaseLayout>
 </template>
 
 <style lang="scss" module>

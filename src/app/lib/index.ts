@@ -1,3 +1,1 @@
-import { clickOutsideDirective } from './directives';
-
-export { clickOutsideDirective };
+export { clickOutsideDirective } from './directives';

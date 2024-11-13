@@ -14,33 +14,45 @@ const props = withDefaults(
   { siblingCount: 2 },
 );
 
-const firstPage = 1;
-const lastPage = props.totalPages;
-
 const currentPage = defineModel<number>({ required: true });
 
+const firstPage = 1;
+const lastPage = computed(() => props.totalPages);
+
 const previousPage = computed(() => Math.max(currentPage.value - 1, firstPage));
-const nextPage = computed(() => Math.min(currentPage.value + 1, lastPage));
+const nextPage = computed(() => Math.min(currentPage.value + 1, lastPage.value));
 
 const totalVisiblePages = computed(() => 2 * props.siblingCount + 5);
 
 const leftSiblingPage = computed(() => Math.max(currentPage.value - props.siblingCount, firstPage));
-const rightSiblingPage = computed(() => Math.min(currentPage.value + props.siblingCount, lastPage));
+const rightSiblingPage = computed(() =>
+  Math.min(currentPage.value + props.siblingCount, lastPage.value),
+);
 
 const shouldHaveLeftSpace = computed(() => leftSiblingPage.value > firstPage + 2);
-const shouldHaveRightSpace = computed(() => rightSiblingPage.value < lastPage - 2);
+const shouldHaveRightSpace = computed(() => rightSiblingPage.value < lastPage.value - 2);
 
 const pages = computed(() => {
   if (totalVisiblePages.value >= props.totalPages) {
-    return range(firstPage, lastPage);
+    return range(firstPage, lastPage.value);
   } else if (!shouldHaveLeftSpace.value && !shouldHaveRightSpace.value) {
-    return range(firstPage, lastPage);
+    return range(firstPage, lastPage.value);
   } else if (!shouldHaveLeftSpace.value && shouldHaveRightSpace.value) {
-    return [...range(1, totalVisiblePages.value - 2), null, lastPage];
+    return [...range(1, totalVisiblePages.value - 2), null, lastPage.value];
   } else if (shouldHaveLeftSpace.value && !shouldHaveRightSpace.value) {
-    return [firstPage, null, ...range(props.totalPages - (totalVisiblePages.value - 3), lastPage)];
+    return [
+      firstPage,
+      null,
+      ...range(props.totalPages - (totalVisiblePages.value - 3), lastPage.value),
+    ];
   }
-  return [firstPage, null, ...range(leftSiblingPage.value, rightSiblingPage.value), null, lastPage];
+  return [
+    firstPage,
+    null,
+    ...range(leftSiblingPage.value, rightSiblingPage.value),
+    null,
+    lastPage.value,
+  ];
 });
 </script>
 

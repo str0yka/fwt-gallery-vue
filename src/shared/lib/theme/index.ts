@@ -1,4 +1,2 @@
-import { getTheme } from './getTheme';
-import { isThemeValid } from './isThemeValid';
-
-export { isThemeValid, getTheme };
+export { getTheme } from './getTheme';
+export { isThemeValid } from './isThemeValid';

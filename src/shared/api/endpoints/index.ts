@@ -1,9 +1,6 @@
-import { getAuthors } from './authors';
-import type { Author } from './authors';
-import { getLocations } from './locations';
-import type { PaintingLocation } from './locations';
-import { getPaintings } from './paintings';
-import type { Painting } from './paintings';
-
-export { getPaintings, getAuthors, getLocations };
-export type { Painting, Author, PaintingLocation };
+export { getAuthors } from './authors';
+export type { Author } from './authors';
+export { getLocations } from './locations';
+export type { PaintingLocation } from './locations';
+export { getPaintings } from './paintings';
+export type { Painting } from './paintings';

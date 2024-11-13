@@ -5,6 +5,7 @@ interface Props extends /* @vue-ignore */ InputHTMLAttributes {}
 
 defineProps<Props>();
 defineOptions({ inheritAttrs: false });
+const model = defineModel();
 </script>
 
 <template>
@@ -14,6 +15,7 @@ defineOptions({ inheritAttrs: false });
       v-bind="{ ...$attrs, class: undefined }"
       :class="$style.input"
       :size="1"
+      v-model="model"
     />
     <slot name="end-adornment" />
   </label>

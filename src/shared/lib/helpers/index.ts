@@ -1,3 +1,1 @@
-import { range } from './range';
-
-export { range };
+export { range } from './range';

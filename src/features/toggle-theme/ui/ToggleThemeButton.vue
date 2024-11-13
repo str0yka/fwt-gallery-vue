@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { THEME } from '@shared/constants';
+import { THEME } from '@shared/config';
 import { useThemeStore } from '@shared/model';
 import { MoonIcon, SunIcon } from '@shared/ui';
 

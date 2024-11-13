@@ -2,7 +2,7 @@ import { type InstanceRequestConfig, api } from '@shared/api/instance';
 
 export interface PaintingLocation {
   id: number;
-  name: string;
+  location: string;
 }
 
 interface GetLocationsParams {

@@ -1,4 +1,4 @@
-import { THEME } from '@shared/constants';
+import { THEME } from '@shared/config';
 import type { Theme } from '@shared/model';
 
 export const isThemeValid = (value: unknown): value is Theme =>

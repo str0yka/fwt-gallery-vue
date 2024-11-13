@@ -1,5 +1,2 @@
-import { useThemeStore } from './store';
-import type { Theme } from './types';
-
-export { useThemeStore };
-export type { Theme };
+export { useThemeStore } from './store';
+export type { Theme } from './types';
