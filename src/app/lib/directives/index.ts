@@ -1,0 +1,1 @@
+export { clickOutsideDirective } from './clickOutsideDirective';

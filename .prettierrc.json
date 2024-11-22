@@ -7,5 +7,17 @@
   "printWidth": 100,
   "trailingComma": "all",
   "semi": true,
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^@app/(.*)$",
+    "^@pages",
+    "^@widgets",
+    "^@features",
+    "^@entities",
+    "^@shared/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

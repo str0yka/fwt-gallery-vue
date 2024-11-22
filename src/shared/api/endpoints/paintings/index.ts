@@ -1,4 +1,7 @@
-import { API_URL } from '@shared/constants';
+import { type InstanceRequestConfig, api } from '@shared/api/instance';
+
+import type { Author } from '../authors';
+import type { PaintingLocation } from '../locations';
 
 export interface Painting {
   authorId: number;
@@ -7,32 +10,44 @@ export interface Painting {
   imageUrl: string;
   locationId: number;
   name: string;
-  author: {
-    id: number;
-    name: string;
-  };
-  location: {
-    id: number;
-    location: string;
-  };
+  author: Author;
+  location: PaintingLocation;
 }
 
 interface GetPaintingsParams {
-  page?: number;
-  limit?: number;
+  query?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+  };
+  config?: InstanceRequestConfig;
 }
 
-export const getPaintings = async ({ limit, page }: GetPaintingsParams = {}) => {
-  const searchParams = `${typeof page === 'number' ? `&_page=${page}` : ''}${typeof limit === 'number' ? `&_limit=${limit}` : ''}`;
+type GetPaintingsResponse = Painting[];
 
-  const response = await fetch(
-    `${API_URL}/paintings?_expand=author&_expand=location${searchParams}`,
+export const getPaintings = async (
+  { query }: GetPaintingsParams = {},
+  config?: InstanceRequestConfig,
+) => {
+  const queryParams = new URLSearchParams();
+  if (typeof query?.page === 'number') queryParams.set('_page', query?.page.toString());
+  if (typeof query?.limit === 'number') queryParams.set('_limit', query?.limit.toString());
+  if (typeof query?.search === 'string') queryParams.set('q', query?.search);
+
+  const response = await api.get<GetPaintingsResponse>(
+    `/paintings?_expand=author&_expand=location&${queryParams}`,
+    config,
   );
-  const data = (await response.json()) as Painting[];
+
+  const count = Number(response.headers.get('X-Total-Count'));
+  const pages = typeof query?.limit === 'number' ? Math.ceil(count / query.limit) : 1;
 
   return {
-    ok: response.ok,
-    status: response.status,
-    data,
+    ...response,
+    data: {
+      count,
+      pages,
+      paintings: response.data,
+    },
   };
 };

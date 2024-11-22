@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
+
 import { ArrowIcon } from '@shared/ui';
 
 const { name, imageUrl } = defineProps<{
@@ -14,34 +15,34 @@ const { name, imageUrl } = defineProps<{
 <template>
   <article
     ref="{ref}"
-    class="card-container"
+    :class="$style['card-container']"
   >
     <img
-      class="image"
+      :class="$style.image"
       :src="imageUrl"
       :alt="name"
     />
-    <div class="info-container">
-      <div :class="['info', 'primary']">
-        <h2 class="title">{{ name }}</h2>
-        <p class="description">{{ date }}</p>
+    <div :class="$style['info-container']">
+      <div :class="[$style.info, $style.primary]">
+        <h2 :class="$style.title">{{ name }}</h2>
+        <p :class="$style.description">{{ date }}</p>
       </div>
-      <div :class="['info', 'secondary']">
-        <h2 class="title">{{ artist }}</h2>
-        <p class="description">{{ location }}</p>
+      <div :class="[$style.info, $style.secondary]">
+        <h2 :class="$style.title">{{ artist }}</h2>
+        <p :class="$style.description">{{ location }}</p>
       </div>
       <button
-        class="button"
+        :class="$style.button"
         type="button"
         :aria-label="name"
       >
-        <ArrowIcon class="button-icon" />
+        <ArrowIcon :class="$style['button-icon']" />
       </button>
     </div>
   </article>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import '@app/styles/mixins';
 
 .image {

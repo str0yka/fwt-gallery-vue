@@ -1,6 +1,10 @@
-import LogoIcon from './LogoIcon.vue';
-import MoonIcon from './MoonIcon.vue';
-import SunIcon from './SunIcon.vue';
-import ArrowIcon from './ArrowIcon.vue';
-
-export { LogoIcon, MoonIcon, SunIcon, ArrowIcon };
+export { default as ArrowIcon } from './ArrowIcon.vue';
+export { default as ChevronIcon } from './ChevronIcon.vue';
+export { default as ExpandIcon } from './ExpandIcon.vue';
+export { default as FilterIcon } from './FilterIcon.vue';
+export { default as LogoIcon } from './LogoIcon.vue';
+export { default as MinusIcon } from './MinusIcon.vue';
+export { default as MoonIcon } from './MoonIcon.vue';
+export { default as PlusIcon } from './PlusIcon.vue';
+export { default as SearchIcon } from './SearchIcon.vue';
+export { default as SunIcon } from './SunIcon.vue';

@@ -1,3 +1,1 @@
-import PaintingItem from './ui/PaintingItem.vue';
-
-export { PaintingItem };
+export { default as PaintingItem } from './ui/PaintingItem.vue';

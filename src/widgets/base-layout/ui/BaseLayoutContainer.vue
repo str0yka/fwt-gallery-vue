@@ -1,9 +1,9 @@
 <template>
-  <div class="container"><slot /></div>
+  <div :class="$style.container"><slot /></div>
 </template>
 
-<style scoped lang="scss">
-@import '@app/styles/mixins.scss';
+<style lang="scss" module>
+@import '@app/styles/mixins';
 
 .container {
   padding: 12px 20px;

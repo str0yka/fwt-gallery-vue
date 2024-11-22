@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { THEME } from '@shared/constants';
+import { THEME } from '@shared/config';
 import { useThemeStore } from '@shared/model';
-import { SunIcon, MoonIcon } from '@shared/ui';
+import { MoonIcon, SunIcon } from '@shared/ui';
 
 const themeStore = useThemeStore();
 </script>
 
 <template>
   <button
-    class="toggle-theme-button"
+    :class="$style['toggle-theme-button']"
     @click="themeStore.toggle"
   >
     <SunIcon v-if="themeStore.theme === THEME.DARK" />
@@ -16,7 +16,7 @@ const themeStore = useThemeStore();
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .toggle-theme-button {
   width: 40px;
   height: 40px;
